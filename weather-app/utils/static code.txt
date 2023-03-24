@@ -1,0 +1,31 @@
+url =
+  "http://api.weatherstack.com/current?access_key=08677223326a2218a21a1822d2aea7d8&query=42.3605,-71.0596";
+
+request({ url: url, json: true }, (error, response) => {
+  if (error) {
+    console.log(error);
+  } else if (response.body.error) {
+    console.log(response.body.error);
+  } else {
+    console.log(
+      `${response.body.current.weather_descriptions[0]}. it is ${response.body.current.temperature} but it feels like ${response.body.current.feelslike}`
+    );
+  }
+});
+
+geocodeUrl =
+  "http://api.weatherstack.com/current?access_key=08677223326a2218a21a1822d2aea7d8&query=42.3605,-71.0596";
+
+request({ url: geocodeUrl, json: true }, (error, response) => {
+  if (error) {
+    console.log(error);
+  } else if (response.body.error) {
+    console.log(response.body.error);
+  } else {
+    longitutde = response.body.location.lon;
+    lattitude = response.body.location.lat;
+    console.log(longitute, lattitude);
+
+    console.log(response.body);
+  }
+});

@@ -1,0 +1,56 @@
+db.collection('users').insertOne({
+    _id:id,
+    name: "vikram",
+    age:21
+},(error,result)=>{
+    if(error){
+        return console.log(error)
+    }
+})
+
+db.collection('users').insertMany([
+    {
+        name:"gunther",
+        age:30
+    },
+    {
+        name:"joey",
+        age:32
+    }
+])
+
+db.collection('tasks').insertMany([
+    {
+        task:"go to school",
+        completed:true
+    },
+    {
+        task:"renew my database",
+        completed:false
+    }
+])
+MongoClient(connectionURL, (error, client) => {
+    console.log("connected.", client)
+    if (error) {
+        console.log(error)
+        console.log('Unable to connect to database!')
+        return;
+    }
+
+    console.log("connected.")
+})
+
+
+const bcrypt = require('bcryptjs')
+
+const myfunction = async ()=>{
+    password = "red123"
+    hashed = await bcrypt.hash(password,8)
+
+    console.log(password , hashed)
+
+    isvalid = await bcrypt.compare(password, hashed)
+    console.log(isvalid)
+}
+
+myfunction()
